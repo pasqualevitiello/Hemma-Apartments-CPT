@@ -2,7 +2,7 @@
 Code to be used in Hemma Child theme to add a new Custom Post Type named "Apartment".
 
 ## How to use it
-Copy all functions included in functions.php file and paste them at the bottom of the functions.php file included in Hemma child theme.
+Copy all functions included in functions.php file and paste them at the bottom of the functions.php file included in your Hemma child theme.
 
 Copy the following files into the child theme directory:
 - single-apartment.php
