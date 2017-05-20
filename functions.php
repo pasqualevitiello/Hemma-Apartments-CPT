@@ -514,3 +514,89 @@ function opendept_register_apartment_sidebar_metabox() {
 	) );
 
 }
+
+/**
+ * Add Post Summary Settings Meta Box in Apartment pages
+ */
+add_action( 'cmb2_admin_init', 'opendept_register_listed_posts_apartment_metabox' );
+function opendept_register_listed_posts_apartment_metabox() {
+	$prefix = 'opendept_listed_posts_apartment';
+
+	$cmb_listed_posts_apartment = new_cmb2_box( array(
+		'id'            => $prefix . 'metabox',
+		'title'         => esc_html__( 'Post Summary Settings', 'hemma' ),
+		'object_types'  => array( 'page' ),
+		'show_on'       => array( 'key' => 'cpt-template', 'value' => array( 'template-apartment' ) ),
+		'context'       => 'normal',
+		'priority'      => 'high',
+	) );
+
+	$cmb_listed_posts_apartment->add_field( array(
+	    'name'    => esc_html__( 'Show Subtitle', 'hemma' ),
+	    'desc'    => esc_html__( 'Tick this to display the subtitle in the post summary', 'hemma' ),
+	    'id'      => $prefix . 'enable_subtitle',
+	    'type'    => 'checkbox',
+	) );
+
+	$cmb_listed_posts_apartment->add_field( array(
+	    'name'    => esc_html__( 'Show Meta Informations', 'hemma' ),
+	    'desc'    => esc_html__( 'Tick this to display the meta informations (i.e. the icons with labels) in the post summary', 'hemma' ),
+	    'id'      => $prefix . 'enable_meta_info',
+	    'type'    => 'checkbox',
+	) );
+
+	$cmb_listed_posts_apartment->add_field( array(
+	    'name'    => esc_html__( 'Show Button', 'hemma' ),
+	    'desc'    => esc_html__( 'Tick this to display the button in the post summary', 'hemma' ),
+	    'id'      => $prefix . 'enable_button',
+	    'type'    => 'checkbox',
+	) );
+
+	$cmb_listed_posts_apartment->add_field( array(
+	    'name'    => esc_html__( 'Button text', 'hemma' ),
+	    'id'      => $prefix . 'button_text',
+	    'type'    => 'text',
+	    'default' => esc_html__( 'Read More', 'hemma' ),
+	) );
+
+	$cmb_listed_posts_apartment->add_field( array(
+	    'name' => esc_html__( 'Button color', 'hemma' ),
+	    'id'   => $prefix . 'button_color',
+	    'type' => 'select',
+	    'show_option_none' => true,
+	    'options' => array(
+	    	'is-red'        => esc_html__( 'Red', 'hemma' ),
+	    	'is-orange'     => esc_html__( 'Orange', 'hemma' ),
+	    	'is-yellow'     => esc_html__( 'Yellow', 'hemma' ),
+	    	'is-green'      => esc_html__( 'Green', 'hemma' ),
+	    	'is-light-blue' => esc_html__( 'Light Blue', 'hemma' ),
+	    	'is-blue'       => esc_html__( 'Blue', 'hemma' ),
+	    	'is-purple'     => esc_html__( 'Purple', 'hemma' ),
+	    	'is-pink'       => esc_html__( 'Pink', 'hemma' ),
+	    	'is-brown'      => esc_html__( 'Brown', 'hemma' ),
+	    	'is-dark'       => esc_html__( 'Dark', 'hemma' ),
+	    	'is-white'      => esc_html__( 'White', 'hemma' ),
+	    ),
+	) );
+
+	$cmb_listed_posts_apartment->add_field( array(
+	    'name'    => esc_html__( 'Strip link from the title', 'hemma' ),
+	    'desc'    => esc_html__( 'Tick this if you want to strip the link frome the title', 'hemma' ),
+	    'id'      => $prefix . 'strip_title_link',
+	    'type'    => 'checkbox',
+	) );
+
+	$cmb_listed_posts_apartment->add_field( array(
+		'name' => esc_html__( 'Blocks Height', 'hemma' ),
+		'desc' => esc_html__( 'The minimum height of the blocks', 'hemma' ),
+		'id'   => $prefix . 'height',
+		'type' => 'select',
+		'options' => array(
+	        'is-contentheight' => esc_html__( 'Content Height', 'hemma' ),
+	        'is-halfheight'    => esc_html__( 'Half browser height', 'hemma' ),
+	        'is-fullheight'    => esc_html__( 'Full browser height', 'hemma' ),
+	    ),
+	    'default' => 'is-contentheight'
+	) );
+
+}
