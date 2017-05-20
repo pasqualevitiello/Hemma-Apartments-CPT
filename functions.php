@@ -516,11 +516,41 @@ function opendept_register_apartment_sidebar_metabox() {
 }
 
 /**
+ * Add Post Summary Meta Box in Apartment posts
+ */
+add_action( 'cmb2_admin_init', 'opendept_register_summary_apartment_metabox' );
+function opendept_register_summary_apartment_metabox() {
+	$prefix = 'opendept_summary_apartment_';
+
+	$cmb_summary = new_cmb2_box( array(
+		'id'            => $prefix . 'metabox',
+		'title'         => esc_html__( 'Post Summary', 'hemma' ),
+		'object_types'  => array( 'apartment' ),
+		'context'      => 'normal',
+		'priority'     => 'high',
+	) );
+
+	$cmb_summary->add_field( array(
+	    'name'    => esc_html__( 'Post Summary Content', 'hemma' ),
+	    'show_names'    => false,
+	    'desc'    => esc_html__( 'Type here the summary that you want to display on the parent page.', 'hemma' ),
+	    'id'      => $prefix . 'content',
+	    'type'    => 'wysiwyg',
+	    'options' => array(
+	    	'media_buttons' => false,
+	    	'teeny'         => true,
+	    	'wpautop'       => true,
+	    ),
+	) );
+
+}
+
+/**
  * Add Post Summary Settings Meta Box in Apartment pages
  */
 add_action( 'cmb2_admin_init', 'opendept_register_listed_posts_apartment_metabox' );
 function opendept_register_listed_posts_apartment_metabox() {
-	$prefix = 'opendept_listed_posts_apartment';
+	$prefix = 'opendept_listed_posts_apartment_';
 
 	$cmb_listed_posts_apartment = new_cmb2_box( array(
 		'id'            => $prefix . 'metabox',
