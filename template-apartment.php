@@ -79,7 +79,7 @@ get_header(); ?>
 				$apartment_guests = get_post_meta( $the_id, 'opendept_apartment_guests', true );
 				$apartment_beds = get_post_meta( $the_id, 'opendept_apartment_beds', true );
 				$apartment_size = get_post_meta( $the_id, 'opendept_apartment_size', true );
-				$summary_content = get_post_meta( $the_id, 'opendept_summary_content', true );
+				$summary_apartment_content = get_post_meta( $the_id, 'opendept_summary_apartment_content', true );
 				?>
 
 				<div id="post-<?php the_ID(); ?>" <?php post_class( 'block block-split' ); ?>>
@@ -137,7 +137,7 @@ get_header(); ?>
 											</div><!-- /.extras-meta -->
 										<?php endif; ?>
 
-										<?php echo do_shortcode( wpautop( wp_kses_post( $summary_content ) ) ); ?>
+										<?php echo do_shortcode( wpautop( wp_kses_post( $summary_apartment_content ) ) ); ?>
 
 										<?php if ( $listed_posts_apartment_enable_button ) : ?>
 											<a href="<?php the_permalink(); ?>" class="button <?php echo sanitize_html_class( $listed_posts_apartment_button_color ); ?>"><?php echo esc_html( $listed_posts_apartment_button_text ); ?></a>
