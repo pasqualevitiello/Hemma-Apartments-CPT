@@ -1,5 +1,5 @@
 # Hemma-Apartments-CPT
-Code to be used in Hemma Child theme to add a new Custom Post Type named "Apartment".
+Code to be used in Hemma Child theme to add a new Custom Post Type named "Apartment" (based on Rooms CPT).
 
 ## How to use it
 Copy all functions included in functions.php file and paste them at the bottom of the functions.php file included in your Hemma child theme.
