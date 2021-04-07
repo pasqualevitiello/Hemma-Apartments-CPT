@@ -12,21 +12,21 @@ get_header(); ?>
 
 	<?php
 	$page_id = get_the_ID();
-	$page_subtitle = get_post_meta( $page_id, 'opendept_apartment_subtitle_subtitle', true );
+	$page_subtitle = get_post_meta( $page_id, 'opendept_subtitle_subtitle', true );
 	$filter_posts = get_post_meta( $page_id, 'opendept_filter_apartment_filter_category', true );
-	$page_overlay_bg = get_post_meta( $page_id, 'opendept_hero_apartment_color', true );
-	$page_titles_align = get_post_meta( $page_id, 'opendept_hero_apartment_align', true );
-	$page_hero_height = get_post_meta( $page_id, 'opendept_hero_apartment_height', true );
-	$page_hero_bg_color = get_post_meta( $page_id, 'opendept_hero_apartment_bg_color', true );
-	$page_hero_mouse_icon = get_post_meta( $page_id, 'opendept_hero_apartment_mouse_icon', true );
+	$page_overlay_bg = get_post_meta( $page_id, 'opendept_hero_color', true );
+	$page_titles_align = get_post_meta( $page_id, 'opendept_hero_align', true );
+	$page_hero_height = get_post_meta( $page_id, 'opendept_hero_height', true );
+	$page_hero_bg_color = get_post_meta( $page_id, 'opendept_hero_bg_color', true );
+	$page_hero_mouse_icon = get_post_meta( $page_id, 'opendept_hero_mouse_icon', true );
 	$page_image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $page_id ), 'full' );
-	$listed_posts_apartment_enable_subtitle = get_post_meta( $page_id, 'opendept_listed_posts_apartment_enable_subtitle', true );
-	$listed_posts_apartment_enable_meta = get_post_meta( $page_id, 'opendept_listed_posts_apartment_enable_meta_info', true );
-	$listed_posts_apartment_enable_button = get_post_meta( $page_id, 'opendept_listed_posts_apartment_enable_button', true );
-	$listed_posts_apartment_button_text = get_post_meta( $page_id, 'opendept_listed_posts_apartment_button_text', true );
-	$listed_posts_apartment_button_color = get_post_meta( $page_id, 'opendept_listed_posts_apartment_button_color', true );
-	$listed_posts_apartment_strip_title_link = get_post_meta( $page_id, 'opendept_listed_posts_apartment_strip_title_link', true );
-	$listed_posts_apartment_height = get_post_meta( $page_id, 'opendept_listed_posts_apartment_height', true );
+	$listed_posts_apartment_enable_subtitle = get_post_meta( $page_id, 'opendept_listed_posts_enable_subtitle', true );
+	$listed_posts_apartment_enable_meta = get_post_meta( $page_id, 'opendept_listed_posts_enable_meta_info', true );
+	$listed_posts_apartment_enable_button = get_post_meta( $page_id, 'opendept_listed_posts_enable_button', true );
+	$listed_posts_apartment_button_text = get_post_meta( $page_id, 'opendept_listed_posts_button_text', true );
+	$listed_posts_apartment_button_color = get_post_meta( $page_id, 'opendept_listed_posts_button_color', true );
+	$listed_posts_apartment_strip_title_link = get_post_meta( $page_id, 'opendept_listed_posts_strip_title_link', true );
+	$listed_posts_apartment_height = get_post_meta( $page_id, 'opendept_listed_posts_height', true );
 	$posts_per_page = get_theme_mod( 'apartment_posts_per_page', 4 );
 	?>
 
