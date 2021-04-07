@@ -11,12 +11,12 @@ get_header(); ?>
 
 	<?php
 	$the_id = get_the_ID();
-	$subtitle = get_post_meta( $the_id, 'opendept_apartment_subtitle_subtitle', true );
-	$overlay_bg = get_post_meta( $the_id, 'opendept_hero_apartment_color', true );
-	$titles_align = get_post_meta( $the_id, 'opendept_hero_apartment_align', true );
-	$hero_height = get_post_meta( $the_id, 'opendept_hero_apartment_height', true );
-	$hero_bg_color = get_post_meta( $the_id, 'opendept_hero_apartment_bg_color', true );
-	$hero_mouse_icon = get_post_meta( $the_id, 'opendept_hero_apartment_mouse_icon', true );
+	$subtitle = get_post_meta( $the_id, 'opendept_subtitle_subtitle', true );
+	$overlay_bg = get_post_meta( $the_id, 'opendept_hero_color', true );
+	$titles_align = get_post_meta( $the_id, 'opendept_hero_align', true );
+	$hero_height = get_post_meta( $the_id, 'opendept_hero_height', true );
+	$hero_bg_color = get_post_meta( $the_id, 'opendept_hero_bg_color', true );
+	$hero_mouse_icon = get_post_meta( $the_id, 'opendept_hero_mouse_icon', true );
 	$apartment_guests = get_post_meta( $the_id, 'opendept_apartment_guests', true );
 	$apartment_beds = get_post_meta( $the_id, 'opendept_apartment_beds', true );
 	$apartment_size = get_post_meta( $the_id, 'opendept_apartment_size', true );
