@@ -1,8 +1,9 @@
 <?php
 /**
- * The template for displaying all single apartment posts.
+ * Template Name: Apartment page
+ * The template for displaying Apartment template pages.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ * @link https://codex.wordpress.org/Template_Hierarchy
  *
  * @package Hemma
  */
@@ -10,154 +11,164 @@
 get_header(); ?>
 
 	<?php
-	$the_id = get_the_ID();
-	$subtitle = get_post_meta( $the_id, 'opendept_subtitle_apartment_subtitle', true );
-	$overlay_bg = get_post_meta( $the_id, 'opendept_hero_apartment_color', true );
-	$titles_align = get_post_meta( $the_id, 'opendept_hero_apartment_align', true );
-	$hero_height = get_post_meta( $the_id, 'opendept_hero_apartment_height', true );
-	$hero_bg_color = get_post_meta( $the_id, 'opendept_hero_apartment_bg_color', true );
-	$hero_mouse_icon = get_post_meta( $the_id, 'opendept_hero_apartment_mouse_icon', true );
-	$apartment_guests = get_post_meta( $the_id, 'opendept_apartment_guests', true );
-	$apartment_beds = get_post_meta( $the_id, 'opendept_apartment_beds', true );
-	$apartment_size = get_post_meta( $the_id, 'opendept_apartment_size', true );
-	$image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $the_id ), 'full' );
-	$sidebar = get_post_meta( $the_id, 'opendept_apartment_sidebar_enable_sidebar', true );
-	$grey_box = get_post_meta( $the_id, 'opendept_apartment_sidebar_enable_box', true );
-	$grey_box_title = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_title', true );
-	$grey_box_price = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_price', true );
-	$grey_box_price_per = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_price_per', true );
-	$grey_box_button_text = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_button_text', true );
-	$grey_box_button_link = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_button_link', true );
-	$grey_box_button_color = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_button_color', true );
-	$grey_box_button_target = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_button_target', true );
-	$grey_box_notes = get_post_meta( $the_id, 'opendept_apartment_sidebar_box_notes', true );
-	$sidebar_content = get_post_meta( $the_id, 'opendept_apartment_sidebar_content', true );
-
-	// Set layout column class
-	$col_class = ' is-8 is-offset-2';
-	if ( $sidebar ) {
-		$col_class = ' is-8';
-	}
+	$page_id = get_the_ID();
+	$page_subtitle = get_post_meta( $page_id, 'opendept_subtitle_subtitle', true );
+	$filter_posts = get_post_meta( $page_id, 'opendept_filter_apartment_filter_category', true );
+	$page_overlay_bg = get_post_meta( $page_id, 'opendept_hero_color', true );
+	$page_titles_align = get_post_meta( $page_id, 'opendept_hero_align', true );
+	$page_hero_height = get_post_meta( $page_id, 'opendept_hero_height', true );
+	$page_hero_bg_color = get_post_meta( $page_id, 'opendept_hero_bg_color', true );
+	$page_hero_mouse_icon = get_post_meta( $page_id, 'opendept_hero_mouse_icon', true );
+	$page_image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $page_id ), 'full' );
+	$listed_posts_apartment_enable_subtitle = get_post_meta( $page_id, 'opendept_listed_posts_enable_subtitle', true );
+	$listed_posts_apartment_enable_meta = get_post_meta( $page_id, 'opendept_listed_posts_enable_meta_info', true );
+	$listed_posts_apartment_enable_button = get_post_meta( $page_id, 'opendept_listed_posts_enable_button', true );
+	$listed_posts_apartment_button_text = get_post_meta( $page_id, 'opendept_listed_posts_button_text', true );
+	$listed_posts_apartment_button_color = get_post_meta( $page_id, 'opendept_listed_posts_button_color', true );
+	$listed_posts_apartment_strip_title_link = get_post_meta( $page_id, 'opendept_listed_posts_strip_title_link', true );
+	$listed_posts_apartment_height = get_post_meta( $page_id, 'opendept_listed_posts_height', true );
+	$posts_per_page = get_theme_mod( 'apartment_posts_per_page', 4 );
 	?>
 
-	<div id="hero" class="hero is-bg-image is-text-light <?php echo sanitize_html_class( $titles_align ); ?> <?php echo sanitize_html_class( $hero_height ); ?> <?php echo sanitize_html_class( $hero_bg_color ); ?>"<?php if ( $image_attributes ) echo 'style="background-image: url(' . esc_url( $image_attributes[0] ) . ');"' ?>>
-		<div class="hero-content" style="background-color: <?php echo $overlay_bg; ?>">
+	<div id="hero" class="hero is-bg-image is-text-light <?php echo sanitize_html_class( $page_titles_align ); ?> <?php echo sanitize_html_class( $page_hero_height ); ?> <?php echo sanitize_html_class( $page_hero_bg_color ); ?>"<?php if ( $page_image_attributes ) echo ' style="background-image: url(' . esc_url( $page_image_attributes[0] ) . ');"' ?>>
+		<div class="hero-content" style="background-color: <?php echo $page_overlay_bg; ?>">
 			<div class="container is-fluid">
 				<div class="hero-text">
-					<?php the_title( '<h1 class="hero-title">', '</h1>' ); ?>
-					<?php if ( $subtitle ) : ?>
-						<div class="hero-subtitle"><?php echo esc_html( $subtitle ); ?></div>
-					<?php endif; ?>
+					 <?php the_title( '<h1 class="hero-title">', '</h1>' ); ?>
+					<div class="hero-subtitle"><?php echo esc_html( $page_subtitle ); ?></div>
+					<?php
+					while ( have_posts() ) : the_post();
+						the_content();
+					endwhile;
+					?>
 				</div><!-- /.hero-text -->
 			</div><!-- /.container -->
 			<?php
-			if ( $hero_mouse_icon ) { ?>
+			if ( $page_hero_mouse_icon ) { ?>
 			<div class="scroll-icon"></div>
 			<?php } ?>
-			<div class="extras-meta container is-fluid">
-				<div class="extras-meta-apartment">
-
-					<?php if ( $apartment_guests ) : ?>
-
-						<span class="extras-meta-block extras-meta-apartment-guests">
-							<svg class="hemma-icon hemma-icon-guests"><use xlink:href="#hemma-icon-guests"></use></svg>
-							<?php echo esc_html( $apartment_guests ); ?>
-						</span>
-
-					<?php endif; ?>
-					
-					<?php if ( $apartment_beds ) : ?>
-
-						<span class="extras-meta-block extras-meta-apartment-beds">
-							<svg class="hemma-icon hemma-icon-beds"><use xlink:href="#hemma-icon-beds"></use></svg>
-							<?php echo esc_html( $apartment_beds ); ?>
-						</span>
-
-					<?php endif; ?>
-
-					<?php if ( $apartment_size ) : ?>
-
-						<span class="extras-meta-block extras-meta-apartment-size">
-							<svg class="hemma-icon hemma-icon-size"><use xlink:href="#hemma-icon-size"></use></svg>
-							<?php echo esc_html( $apartment_size ); ?>
-						</span>
-
-					<?php endif; ?>
-
-				</div><!-- /.extras-meta-apartment -->
-			</div><!-- /.extras-meta -->
 		</div><!-- /.hero-content -->
 	</div><!-- /.hero -->
 
-	<div class="container">
-		<div class="columns">
-			<div class="column<?php echo $col_class; ?>">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+		
+			<?php
+			$args = array(
+				'post_type' => 'apartment',
+				'posts_per_page' => $posts_per_page,
+				'paged' => ( $paged = get_query_var('paged') ) ? $paged : 1,
+			);
+			if( $filter_posts ) {
+				$args['tax_query'] = array(
+					array(
+						'taxonomy' => 'apartmentcategory',
+						'field' => 'slug',
+						'terms' => $filter_posts
+					)
+				);
+			}
 
-				<div id="primary" class="content-area">
-					<main id="main" class="site-main" role="main">
+			$the_query = new WP_Query( $args );
 
-					<?php
-					while ( have_posts() ) : the_post();
+			while ( $the_query->have_posts() ) : $the_query->the_post();
 
-						get_template_part( 'template-parts/content', 'cpt' );
+				$the_id = get_the_ID();
+				$subtitle = get_post_meta( $the_id, 'opendept_subtitle_subtitle', true );
+				$image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $the_id ), 'full' );
+				$apartment_guests = get_post_meta( $the_id, 'opendept_apartment_guests', true );
+				$apartment_beds = get_post_meta( $the_id, 'opendept_apartment_beds', true );
+				$apartment_size = get_post_meta( $the_id, 'opendept_apartment_size', true );
+				$summary_apartment_content = get_post_meta( $the_id, 'opendept_summary_apartment_content', true );
+				?>
 
-						if ( true == get_theme_mod( 'enable_apartment_comments', false ) ) :
-							// If comments are open or we have at least one comment, load up the comment template.
-							if ( comments_open() || get_comments_number() ) :
-								comments_template();
-							endif;
-						endif;
+				<div id="post-<?php the_ID(); ?>" <?php post_class( 'block block-split' ); ?>>
+					<div class="block-content<?php if( $listed_posts_apartment_height ) echo ' ' . sanitize_html_class( $listed_posts_apartment_height ); ?>">
+						<div class="block-figure"<?php if ( $image_attributes ) echo 'style="background-image: url(' . esc_url( $image_attributes[0] ) . ');"' ?>>
+						</div>
+						<div class="container is-fluid">
+							<div class="columns">
+								<div class="column is-6-desktop">
+									<div class="block-text">
+										<?php
+										if ( $listed_posts_apartment_strip_title_link ) :
+											the_title( '<h2 class="block-title">', '</h2>' );
+										else :
+											the_title( '<h2 class="block-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+										endif;
+										?>
 
-					endwhile; // End of the loop.
-					?>
+										<?php if ( $subtitle && $listed_posts_apartment_enable_subtitle ) : ?>
+											<div class="block-subtitle"><?php echo esc_html( $subtitle ); ?></div>
+										<?php endif; ?>
 
-					</main><!-- #main -->
-				</div><!-- #primary -->
+										<?php if ( $listed_posts_apartment_enable_meta ) : ?>
+											<div class="extras-meta">
+												<div class="extras-meta-apartment">
 
-			</div><!-- /.column -->
+													<?php if ( $apartment_guests ) : ?>
 
-			<?php if ( $sidebar ) : ?>
+														<span class="extras-meta-block extras-meta-apartment-guests">
+															<svg class="hemma-icon hemma-icon-guests"><use xlink:href="#hemma-icon-guests"></use></svg>
+															<?php echo esc_html( $apartment_guests ); ?>
+														</span>
 
-			<div class="column is-4">
+													<?php endif; ?>
+													
+													<?php if ( $apartment_beds ) : ?>
 
-				<aside id="secondary" class="widget-area" role="complementary">
+														<span class="extras-meta-block extras-meta-apartment-beds">
+															<svg class="hemma-icon hemma-icon-beds"><use xlink:href="#hemma-icon-beds"></use></svg>
+															<?php echo esc_html( $apartment_beds ); ?>
+														</span>
 
-					<?php if( $grey_box ) : ?>
+													<?php endif; ?>
 
-					<section>
-						<div class="grey-box is-centered">
-							<h4><?php echo esc_html( $grey_box_title ); ?></h4>
-							<div class="h2"><?php echo esc_html( $grey_box_price ); ?></div>
-							<p><?php echo esc_html( $grey_box_price_per ); ?></p>
-							<?php if( $grey_box_button_text ) : ?>
-							<a href="<?php echo esc_url( $grey_box_button_link ); ?>" class="button <?php echo sanitize_html_class( $grey_box_button_color ); ?>"<?php if( $grey_box_button_target ) echo ' target=_blank'; ?>><?php echo esc_html( $grey_box_button_text ); ?></a>
-							<?php endif; ?>
-							<?php if( $grey_box_notes ) : ?>
-							<p><?php echo do_shortcode( wpautop( wp_kses_post( $grey_box_notes ) ) ); ?></p>
-							<?php endif; ?>
-						</div><!-- /.grey-box -->
-					</section>
+													<?php if ( $apartment_size ) : ?>
 
-					<?php endif; ?>
+														<span class="extras-meta-block extras-meta-apartment-size">
+															<svg class="hemma-icon hemma-icon-size"><use xlink:href="#hemma-icon-size"></use></svg>
+															<?php echo esc_html( $apartment_size ); ?>
+														</span>
 
-					<?php if( $sidebar_content ) : ?>
+													<?php endif; ?>
 
-					<section>
+												</div><!-- /.extras-meta-apartment -->
+											</div><!-- /.extras-meta -->
+										<?php endif; ?>
 
-						<?php echo do_shortcode( wpautop( wp_kses_post( $sidebar_content ) ) ); ?>
+										<?php echo do_shortcode( wpautop( wp_kses_post( $summary_apartment_content ) ) ); ?>
 
-					</section>
+										<?php if ( $listed_posts_apartment_enable_button ) : ?>
+											<a href="<?php the_permalink(); ?>" class="button <?php echo sanitize_html_class( $listed_posts_apartment_button_color ); ?>"><?php echo esc_html( $listed_posts_apartment_button_text ); ?></a>
+										<?php endif; ?>
 
-					<?php endif; ?>
+									</div><!-- /.block-text -->
+								</div><!-- /.column -->
+							</div><!-- /.columns -->
+						</div><!-- /.container -->
+					</div><!-- /.block-content -->
+				</div><!-- /.block -->
 
-				</aside>
+			<?php
+			endwhile; ?>
 
-			</div><!-- /.column -->
+			<?php if ( get_next_posts_link( false, $the_query->max_num_pages ) || get_previous_posts_link() ) : ?>
+			
+				<div class="nav-links">
+					<div class="container is-fluid">
+						<?php next_posts_link( esc_html__( 'Prev Apartments', 'hemma' ), $the_query->max_num_pages ); ?>
+						<?php previous_posts_link( esc_html__( 'Next Apartments', 'hemma' ) ); ?>
+					</div>
+				</div>
 
 			<?php endif; ?>
+			
+			<?php
+			wp_reset_postdata(); ?>
 
-		</div><!-- /.columns -->
-	</div><!-- /.container -->
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
 <?php
 get_footer();
